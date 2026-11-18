@@ -1,0 +1,53 @@
+﻿
+{
+  "manifest_version": 3,
+  "name": "RedBus Smart Assistant",
+  "version": "1.0.0",
+  "description": "AI-powered RedBus journey search and booking assistant",
+  "permissions": [
+    "storage",
+    "tabs",
+    "sidePanel",
+    "scripting",
+    "alarms",
+    "notifications"
+  ],
+  "host_permissions": [
+    "https://www.redbus.in/*",
+    "https://redbus.in/*",
+    "http://127.0.0.1:8000/*"
+  ],
+  "background": {
+    "service_worker": "extension/background/service-worker.js"
+  },
+  "action": {
+    "default_title": "RedBus Smart Assistant",
+    "default_popup": "extension/popup/popup.html",
+    "default_icon": {
+      "16": "assets/icons/icon16.png",
+      "32": "assets/icons/icon32.png",
+      "48": "assets/icons/icon48.png",
+      "128": "assets/icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "assets/icons/icon16.png",
+    "32": "assets/icons/icon32.png",
+    "48": "assets/icons/icon48.png",
+    "128": "assets/icons/icon128.png"
+  },
+  "side_panel": {
+    "default_path": "extension/sidepanel/index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.redbus.in/*",
+        "https://redbus.in/*"
+      ],
+      "js": ["extension/content/redbus-content.js"],
+      "css": ["extension/content/redbus-content.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}
